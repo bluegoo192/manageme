@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1= title
+    a(class="button", href="/tasklist") Back
+    form#formAddUser(name="addtask",method="post",action="/addtask")
+        input#inputUserName(type="text", placeholder="name", name="taskName")
+        input#inputUserEmail(type="text", placeholder="time", name="taskTime")
+        button#btnSubmit(type="submit") submit

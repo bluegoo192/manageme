@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .screen.filler
+    .divider
+    .divider
+    #login-box.center
+      h1= title
+      .divider
+      .flex-container
+          form(name="signin", method="post", action="/signin")
+            label
+              | Username
+              input(type="text", name="username")
+            label
+              | Password
+              input(type="password", name="password")
+            button(type="submit") Log in
+          form(name="adduser",method="post",action="/signup")
+            label
+              | Username
+              input#inputUserName(type="text", name="username")
+            label
+              | Password
+              input(type="password", name="password")
+            button#btnSubmit(type="submit") Create account
+    .divider
+    a.center(href="/") back

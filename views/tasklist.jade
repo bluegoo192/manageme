@@ -1,0 +1,77 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/tasklist.css')
+    link(href='https://fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet' type='text/css')
+  body
+    .divider
+    .center.content
+      h1.
+          Task List
+      .flex-container
+        ul
+          each task, i in tasklist
+            li= task.name + ': ' + task.time + ' minutes starting at ' + task.start + ' on ' + task.day
+        div.flex-container.vertical
+          a.button(href="/newtask") New Task
+          a.button(href="/averages") Task Averages
+      - var test = "12:00";
+      - function toMinutes(time){
+      -   var hours = time.split(':')[0];
+      -   var minutes = time.split(':')[1];
+      -   return parseInt(hours)*60 + parseInt(minutes);
+      - }
+      - function scaled(time, totalMinutes, totalHeight){
+      -   return totalHeight * (time*1.0)/totalMinutes;
+      - }
+      .divider
+      #calendar
+        table
+          tr
+            td(colspan='8')
+              b October 2015
+          tr
+            td(colspan='8', align='center', width='1600')
+              i Halloween is coming!
+          tr.header
+            td#time Time
+            td Sun
+            td Mon
+            td Tue
+            td Wed
+            td Thu
+            td Fri
+            td Sat
+          tr
+            td(height='400')
+              table(align='center')
+                tr
+                  td(align='center')= earliestHour + ':00'
+                tr
+                  td(height='350', width = '200')
+                tr
+                  td(align='center')= latestHour + ':00'
+            each day, i in byDay
+              - var currentTime = earliestHour*60;
+              td
+                table(border='1', align='center')
+                  each task, i in day
+                    - var beforeSpace = 0;
+                    - if(toMinutes(task.start) > currentTime){ beforeSpace = scaled(toMinutes(task.start)-currentTime, totalHours*60, 400);}
+                    - currentTime = toMinutes(task.start);
+                    tr
+                      td(height= '#{beforeSpace}', width = '200')
+                    tr
+                      td.filled(height= '#{scaled(task.time, totalHours*60, 400)}', width = '200', align='center')= task.name
+                      - currentTime += parseInt(task.time);
+                  - var afterSpace = 0;
+                  - if(latestHour*60 > currentTime){ afterSpace = scaled(latestHour*60-currentTime, totalHours*60, 400);}
+                  tr
+                    td(height= '#{afterSpace}', width = '200')
+      .divider
+      a.button(href='/signout') Log out
+      .divider
+    footer
+      p Created by TEAM NGNL for Calhacks 2.0
+      p Copyright 2015

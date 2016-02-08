@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/tasklist.css')
+    link(href='https://fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet' type='text/css')
+  body
+    .content.center
+      .divider
+      h1.
+        Global Averages
+      .divider
+      br
+      - function avg(taskname){
+      -  var times = [];
+      -  var total = 0;
+      -  if (taskname == 'global') {
+      -   for (var i = 0; i < tasklist.length; i++) {
+      -     times.push(parseInt(tasklist[i].time));
+      -   }
+      -   for(var i = 0; i < times.length; i++) {
+      -    total += times[i];
+      -   }
+      -   var avg = total / times.length
+      -   return avg;
+      -  } else {
+      -
+      -
+      -   for (var i = 0; i < tasklist.length; i++) {
+      -     if (taskname == tasklist[i].name) {
+      -       times.push(parseInt(tasklist[i].time));
+      -     }
+      -   }
+      -   for(var i = 0; i < times.length; i++) {
+      -    total += times[i];
+      -   }
+      -   var avg = Math.round(total / times.length);
+      -   return avg;
+      -   }
+      - }
+      .center
+        table#data(border='1')
+          tr.header
+            td Task Name
+            td Average Minutes
+          each name in allNames
+            tr
+              td= name
+              td #{avg(name)}
+          tr.filled
+            td Global Average
+            td #{avg('global')}
+      .divider
+      a.button(href="/tasklist") Back
+      .divider
+    footer
+      p Created by TEAM NGNL for Calhacks 2.0
+      p Copyright 2015

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1.
+        User List
+    a(class="button", href="/tasklist") Task List
+    br
+    a(class="button", href="/newuser") New User
+    ul
+        each user, i in userlist
+            li
+                a(href="mailto:#{user.email}")= user.username

@@ -1,0 +1,49 @@
+html, body {
+  padding: 0px;
+  margin: 0px;
+  top: 0px;
+  height: 100%;
+  font: 14px "Lato", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+  text-decoration: none;
+}
+h1 {
+  margin: 0px;
+}
+
+.screen {
+  height: 100vh;
+}
+
+.big-pic-background {
+  background-image: url(../public/images/SmoothDawn.jpg);
+  background-size: 100%;
+  color: #fff;
+}
+
+.divider {
+  height: 5vh;
+}
+
+#big-slogan {
+  padding-top: 10vh;
+  margin-left: 15%;
+} #big-slogan h1 {
+  font-size: 6em;
+}
+
+#enter-button {
+  border: 1px solid #fff;
+  border-radius: 8px;
+  padding: 12px;
+  color: #fff;
+  font-size: 2em;
+  margin-left: 15%;
+  background-color: rgba(0, 0, 0, 0.3);
+} #enter-button:hover {
+  background-color: #fff;
+  color: #000;
+}
